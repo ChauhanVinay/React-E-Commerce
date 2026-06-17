@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { CartProvider } from './CartContext';
 import Header from './components/Header';
 import ProductList from './components/ProductList';
 import Cart from './components/Cart';
+import About from './pages/About';
 
 function StoreApp() {
   const [showCart, setShowCart] = useState(false);
@@ -16,7 +18,10 @@ function StoreApp() {
         <h1 className="display-1 fw-bold m-0" style={{ fontSize: '5rem' }}>The Generics</h1>
       </div>
 
-      <ProductList onShowCart={() => setShowCart(true)} />
+      <Routes>
+        <Route path="/" element={<ProductList onShowCart={() => setShowCart(true)} />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
 
       <Cart show={showCart} onHide={() => setShowCart(false)} />
 
@@ -31,8 +36,10 @@ function StoreApp() {
 
 export default function App() {
   return (
-    <CartProvider>
-      <StoreApp />
-    </CartProvider>
+    <Router>
+      <CartProvider>
+        <StoreApp />
+      </CartProvider>
+    </Router>
   );
 }

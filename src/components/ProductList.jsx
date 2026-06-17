@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Container, Row, Col, Button} from "react-bootstrap";
 import { CartContext } from "../CartContext";
 
@@ -10,9 +10,9 @@ const productsArr = [
 ];
 
 export default function ProductList({ onShowCart }) {
-    const { addItemToCart } = useContext(CartContext);
+  const { addItemToCart } = useContext(CartContext);
 
-   return (
+  return (
     <Container className="py-5" style={{ maxWidth: '900px' }}>
       <h2 className="text-center mb-5 fw-bold font-monospace fs-1">MUSIC</h2>
       <Row className="g-5 justify-content-center">
