@@ -11,8 +11,15 @@ export default function Header({ onShowCart }) {
     <Navbar bg="dark" variant="dark" expand="lg" className="sticky-top px-4 py-2 border-bottom border-secondary">
       <Container>
         <Nav className="mx-auto fs-5 align-items-center">
+          <NavLink
+           to="/"
+           className={({ isActive }) => isActive ? "nav-link px-3 text-white active" : "nav-link px-3 text-white"}
+          >
+          HOME
+          </NavLink>
+
           <NavLink 
-            to="/" 
+            to="/store" 
             className={({ isActive }) => isActive ? "nav-link px-3 text-white active" : "nav-link px-3 text-white"}
           >
             STORE
