@@ -7,6 +7,7 @@ import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 import About from './pages/About';
 import Home from "./pages/Home";
+import Movies from './components/Movies';
 
 function StoreApp() {
   const [showCart, setShowCart] = useState(false);
@@ -23,6 +24,7 @@ function StoreApp() {
    <Route  path="/" element={<Home />}/>  
    <Route path="/store" element={<ProductList onShowCart={() => setShowCart(true)} />} />
         <Route path="/about" element={<About />} />
+        <Route path="/movies" element={<Movies />}/>
       </Routes>
 
       <Cart show={showCart} onHide={() => setShowCart(false)} />
