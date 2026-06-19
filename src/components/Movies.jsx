@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Container, Button, Table, Spinner, Alert } from 'react-bootstrap';
 
 export default function Movies() {
@@ -11,7 +11,7 @@ export default function Movies() {
   const retryIntervalRef = useRef(null);
 
   // The main async/await movie fetching function
-  async function fetchMoviesHandler() {
+  const  fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -21,7 +21,7 @@ export default function Movies() {
         // Deliverable 1: Updated custom error message text
         throw new Error('Something went wrong ....Retrying');
       }
-
+      
       const data = await response.json();
       setMovies(data);
       stopRetryingHandler(); // If it passes, clear any active retry interval timers
@@ -33,7 +33,18 @@ export default function Movies() {
       }
     }
     setIsLoading(false);
-  }
+  
+}, [isRetrying]); 
+
+//useEffect triggers the fetch automatically
+useEffect(() => {
+  fetchMoviesHandler();
+
+  //Cleanup interval on unmount
+  return () => {
+    if(retryIntervalRef.current) clearInterval(retryIntervalRef.current);
+  };
+}, [fetchMoviesHandler]);
 
   // Starts calling the API automatically every 5 seconds
   function startRetryingLoop() {
@@ -51,12 +62,6 @@ export default function Movies() {
     }
   }
 
-  // Cleanup: Clears the timer if the user leaves the page component entirely
-  useEffect(() => {
-    return () => {
-      if (retryIntervalRef.current) clearInterval(retryIntervalRef.current);
-    };
-  }, []);
 
   return (
     <Container className="py-5 text-center" style={{ maxWidth: '800px' }}>
