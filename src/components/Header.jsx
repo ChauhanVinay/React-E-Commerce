@@ -30,6 +30,12 @@ export default function Header({ onShowCart }) {
           >
             ABOUT
           </NavLink>
+          <NavLink
+          to="/contact"
+          className={({ isActive }) => isActive ? "nav-link px-3 text-white active" : "nav-link px-3 text-white"}
+          >
+            CONTACT
+          </NavLink>
         </Nav>
         <Button variant="outline-info" onClick={onShowCart} className="fw-bold text-white">
           cart <span className="badge bg-info ms-1">{totalQuantity}</span>

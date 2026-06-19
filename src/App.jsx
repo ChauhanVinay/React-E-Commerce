@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; // Changed Routes to Switch
 import { Container } from 'react-bootstrap';
 import { CartProvider } from './CartContext';
 import Header from './components/Header';
@@ -8,6 +8,7 @@ import Cart from './components/Cart';
 import About from './pages/About';
 import Home from "./pages/Home";
 import Movies from './components/Movies';
+import ContactUs from './pages/ContactUs';
 
 function StoreApp() {
   const [showCart, setShowCart] = useState(false);
@@ -20,12 +21,24 @@ function StoreApp() {
         <h1 className="display-1 fw-bold m-0" style={{ fontSize: '5rem' }}>The Generics</h1>
       </div>
 
-      <Routes>
-   <Route  path="/" element={<Home />}/>  
-   <Route path="/store" element={<ProductList onShowCart={() => setShowCart(true)} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/movies" element={<Movies />}/>
-      </Routes>
+      {/* v5 uses Switch instead of Routes, and wraps components as children */}
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/store">
+          <ProductList onShowCart={() => setShowCart(true)} />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/contact">
+          <ContactUs />
+        </Route>
+        <Route path="/movies">
+          <Movies />
+        </Route>
+      </Switch>
 
       <Cart show={showCart} onHide={() => setShowCart(false)} />
 
