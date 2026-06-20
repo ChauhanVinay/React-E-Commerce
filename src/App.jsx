@@ -9,6 +9,7 @@ import About from './pages/About';
 import Home from "./pages/Home";
 import Movies from './components/Movies';
 import ContactUs from './pages/ContactUs';
+import ProductDetail from './pages/ProductDetail';
 
 function StoreApp() {
   const [showCart, setShowCart] = useState(false);
@@ -37,6 +38,9 @@ function StoreApp() {
         </Route>
         <Route path="/movies">
           <Movies />
+        </Route>
+        <Route path="/product/:productId">
+          <ProductDetail />
         </Route>
       </Switch>
 
