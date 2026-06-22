@@ -52,9 +52,8 @@ function StoreApp() {
 
         <Route path="/store">
           {authCtx.isLoggedIn ? (
-            <ProductList
-              onShowCart={() => setShowCart(true)}
-            />
+          <ProductList
+          onShowCart={() => setShowCart(true)}/>
           ) : (
             <Redirect to="/login" />
           )}

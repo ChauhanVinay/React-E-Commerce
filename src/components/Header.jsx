@@ -38,7 +38,7 @@ export default function Header({ onShowCart }) {
             HOME
           </NavLink>
 
-          {authCtx.isLoggedIn && (
+  
             <NavLink
               to="/store"
               className="nav-link text-white"
@@ -46,7 +46,7 @@ export default function Header({ onShowCart }) {
             >
               STORE
             </NavLink>
-          )}
+          
 
           <NavLink
             to="/about"
