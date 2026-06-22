@@ -39,9 +39,7 @@ export default function Login() {
       if (!response.ok) {
         throw new Error(data.error.message || "Authentication Failed");
       }
-
-      authCtx.login(data.idToken);
-
+      authCtx.login(data.idToken, email);
       history.replace("/store");
     } catch (err) {
       setError(err.message);
