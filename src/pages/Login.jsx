@@ -8,8 +8,8 @@ export default function Login() {
   const passwordRef = useRef();
 
   const [error, setError] = useState("");
-  const authCtx = useContext(AuthContext);
 
+  const authCtx = useContext(AuthContext);
   const history = useHistory();
 
   const submitHandler = async (event) => {
@@ -23,8 +23,8 @@ export default function Login() {
 
     try {
       const response = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
+          method: "POST",
+          body: JSON.stringify({
           email: enteredEmail,
           password: enteredPassword,
           returnSecureToken: true,
@@ -39,7 +39,7 @@ export default function Login() {
       if (!response.ok) {
         throw new Error(data.error.message || "Authentication Failed");
       }
-      authCtx.login(data.idToken, email);
+      authCtx.login(data.idToken, enteredEmail);
       history.replace("/store");
     } catch (err) {
       setError(err.message);
